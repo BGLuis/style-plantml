@@ -1,6 +1,6 @@
 <div align="center">
 
-<!-- GitHub Status Badges -->
+<!-- Badges de Status do GitHub -->
 ![GitHub Stars](https://www.shieldcn.dev/github/stars/bgluis/style-plantml.svg?variant=secondary&size=sm)
 ![GitHub Forks](https://www.shieldcn.dev/github/forks/bgluis/style-plantml.svg?variant=secondary&size=sm)
 ![Watchers](https://www.shieldcn.dev/github/watchers/bgluis/style-plantml.svg?variant=secondary&size=sm)
@@ -9,59 +9,59 @@
 
 <br/>
 
-<!-- Technology Badges -->
+<!-- Badges das Tecnologias Utilizadas -->
 ![PlantUML](https://www.shieldcn.dev/badge/PlantUML-Theme-3178C6.svg?variant=branded&size=sm)
 ![Java](https://www.shieldcn.dev/badge/OpenJDK-17+-ED8B00.svg?variant=branded&size=sm)
 
   <h3>style-plantml</h3>
-  Figma-inspired styling and clean component tokens for modern PlantUML diagrams.
+  Estilização moderna para PlantUML inspirada em design kits do Figma com suporte a sprites opcionais.
 </div>
 
 <div align="center">
-  <strong>English</strong> • <a href="README.pt.md">Português</a>
+  <a href="README.md">English</a> • <strong>Português</strong>
 </div>
 
 ---
 
-# 📖 About
-**style-plantml** provides clean, modern, Figma-inspired themes for PlantUML diagrams. It brings contemporary visual design (subtle palettes, distinct category colors, rounded borders, clean table headers, and optional Font Awesome 5 icons) to Architecture, Entity-Relationship (Database), and Sequence diagrams.
+# 📖 Sobre
+O **style-plantml** oferece temas visuais modernos para o PlantUML, inspirados em design kits do Figma. Aplica paletas suaves, cantos arredondados, distinção por categoria (compute, storage, queue, etc.), cabeçalhos estilizados em tabelas de banco de dados e ícones opcionais via Font Awesome 5.
 
-# 📋 Motivation
+# 📋 Motivo
 Criar uma estilização para PlantUML inspirada nos kits de componentes de arquitetura e banco de dados relacional do Figma, substituindo o aspecto cru e datado padrão por um visual limpo e profissional, permitindo alternar estilos e ícones (sprites) de forma rápida e modular.
 
-# ⚡ Visual Comparison (Before vs After)
+# ⚡ Comparação Visual (Antes vs Depois)
 
-### Architecture Diagram
-| Default PlantUML (Unstyled) | style-plantml (Styled) |
+### Diagrama de Arquitetura
+| Padrão PlantUML (Sem estilo) | style-plantml (Com estilo) |
 |:---:|:---:|
-| <img src="comparison/architecture/unstyled.png" width="380" alt="Architecture Unstyled"/> | <img src="comparison/architecture/styled.png" width="380" alt="Architecture Styled"/> |
+| <img src="comparison/architecture/unstyled.png" width="380" alt="Arquitetura sem estilo"/> | <img src="comparison/architecture/styled.png" width="380" alt="Arquitetura estilizada"/> |
 
-### Relational Database / ER Diagram
-| Default PlantUML (Unstyled) | style-plantml (Styled) |
+### Banco de Dados Relacional / ER
+| Padrão PlantUML (Sem estilo) | style-plantml (Com estilo) |
 |:---:|:---:|
-| <img src="comparison/database/unstyled.png" width="380" alt="Database Unstyled"/> | <img src="comparison/database/styled.png" width="380" alt="Database Styled"/> |
+| <img src="comparison/database/unstyled.png" width="380" alt="Banco de dados sem estilo"/> | <img src="comparison/database/styled.png" width="380" alt="Banco de dados estilizado"/> |
 
-### Sequence Diagram
-| Default PlantUML (Unstyled) | style-plantml (Styled) |
+### Diagrama de Sequência
+| Padrão PlantUML (Sem estilo) | style-plantml (Com estilo) |
 |:---:|:---:|
-| <img src="comparison/sequence/unstyled.png" width="440" alt="Sequence Unstyled"/> | <img src="comparison/sequence/styled.png" width="440" alt="Sequence Styled"/> |
+| <img src="comparison/sequence/unstyled.png" width="440" alt="Sequência sem estilo"/> | <img src="comparison/sequence/styled.png" width="440" alt="Sequência estilizada"/> |
 
-# 💻 Getting Started
+# 💻 Como Iniciar
 
-### Requirements
+### Requisitos
 - [Java OpenJDK](https://openjdk.org/) (>= 11)
 - [PlantUML](https://plantuml.com/download) (>= 1.2024.x)
-- [Graphviz](https://graphviz.org/download/) *(Optional — Smetana internal layout engine is pre-configured)*
+- [Graphviz](https://graphviz.org/download/) *(Opcional — o motor interno Smetana já vem pré-configurado)*
 
-### Installation & Usage
+### Instalação e Uso
 
-#### Option A: Local Include
-Clone the repository:
+#### Opção A: Include Local
+Clone o repositório do projeto:
 ```sh
 git clone https://github.com/bgluis/style-plantml.git
 ```
 
-Include the desired theme:
+Inclua o tema desejado:
 ```plantuml
 @startuml
 !include path/to/style-plantml/themes/light/architecture.puml
@@ -72,7 +72,7 @@ user --> api
 @enduml
 ```
 
-#### Option B: Direct GitHub URL
+#### Opção B: URL Direta do GitHub
 ```plantuml
 @startuml
 !define STYLE_PLANTML https://raw.githubusercontent.com/bgluis/style-plantml/main
@@ -84,8 +84,8 @@ user --> api
 @enduml
 ```
 
-### Toggle Sprites (Icons)
-Sprites are enabled by default. To remove icons, add `!define HIDE_SPRITES` **before** the `!include`:
+### Desativar Ícones / Sprites
+Os ícones vêm habilitados por padrão. Para renderizar apenas as formas sem ícones, defina `!define HIDE_SPRITES` **antes** do `!include`:
 ```plantuml
 !define HIDE_SPRITES
 !include ../themes/light/architecture.puml
@@ -93,7 +93,7 @@ Sprites are enabled by default. To remove icons, add `!define HIDE_SPRITES` **be
 
 ---
 
-# 🤝 Contributors
+# 🤝 Contribuidores
 <a href="https://github.com/bgluis/style-plantml/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=bgluis/style-plantml"/>
 </a>
