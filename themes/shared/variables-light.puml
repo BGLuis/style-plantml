@@ -1,0 +1,54 @@
+' ═══════════════════════════════════════════════════════════════
+' style-plantml — Light Theme Variables
+' Inspired by Figma Architecture & Relational DB Component Kits
+'
+' DO NOT include this file directly in your diagrams.
+' It is automatically included by:
+'   themes/light/architecture.puml
+'   themes/light/database.puml
+' ═══════════════════════════════════════════════════════════════
+
+' ── Canvas & Surfaces ──────────────────────────────────────────
+!$L_BG         = "#F5F7FA"
+!$L_SURFACE    = "#FFFFFF"
+!$L_SURFACE2   = "#EEF2F8"
+!$L_BORDER     = "#C8D0E0"
+!$L_TEXT       = "#1A2033"
+!$L_TEXT2      = "#6B7591"
+
+' ── Category Colors: border / fill ────────────────────────────
+!$L_COMPUTE_B      = "#4B6FD4"
+!$L_COMPUTE_F      = "#EBF0FF"
+
+!$L_STORAGE_B      = "#7C5CBF"
+!$L_STORAGE_F      = "#F2EDFF"
+
+!$L_NETWORK_B      = "#1B9E7E"
+!$L_NETWORK_F      = "#E6FAF6"
+
+!$L_EXTERNAL_B     = "#C2622A"
+!$L_EXTERNAL_F     = "#FFF0E8"
+
+!$L_CACHE_B        = "#1A78B8"
+!$L_CACHE_F        = "#E6F4FD"
+
+!$L_AUTH_B         = "#8B3A8A"
+!$L_AUTH_F         = "#F9EEFF"
+
+!$L_CLOUD_B        = "#4A7FA0"
+!$L_CLOUD_F        = "#EAF4FB"
+
+!$L_LB_B           = "#2C8C5A"
+!$L_LB_F           = "#E8F7F0"
+
+' ── Database / ER Theme ───────────────────────────────────────
+!$DB_BG        = "#F8F9FC"
+!$DB_SURFACE   = "#FFFFFF"
+!$DB_HEADER    = "#F1F3F9"
+!$DB_BORDER    = "#D1D5E4"
+!$DB_TEXT      = "#111827"
+!$DB_TEXT2     = "#6B7280"
+!$DB_PK        = "#B45309"
+!$DB_FK        = "#1D4ED8"
+!$DB_IDX       = "#047857"
+!$DB_ARROW     = "#4B6FD4"

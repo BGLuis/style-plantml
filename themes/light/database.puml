@@ -1,0 +1,85 @@
+' ═══════════════════════════════════════════════════════════════
+' style-plantml — Light Database / ER Theme
+' Inspired by: Figma Relational Database Diagram Component Kit
+'
+' USAGE:
+'   !include <path>/themes/light/database.puml
+'
+' DISABLE sprites / badges (text-only):
+'   !define HIDE_SPRITES
+'   !include <path>/themes/light/database.puml
+'
+' AVAILABLE MACROS:
+'   COL_PK(column_name, type)   — Primary Key   🔑
+'   COL_FK(column_name, type)   — Foreign Key   🔗
+'   COL_IDX(column_name, type)  — Indexed col   🔍
+'   COL(column_name, type)      — Regular col
+'
+' EXAMPLE:
+'   class "users" as User {
+'     COL_PK(id, uuid)
+'     --
+'     COL(username, varchar(50))
+'     COL_FK(org_id, uuid)
+'   }
+'
+' RELATIONSHIP NOTATION (standard IE):
+'   User "1" ||--o{ Order : "places"     (one to zero-or-many)
+'   Order "1" ||--|{ Item : "contains"   (one to one-or-many)
+'   A "1" ||--|| B : "has"              (one to exactly one)
+'   A }o--o{ B : "relates"             (many to many)
+' ═══════════════════════════════════════════════════════════════
+
+!include ../shared/variables-light.puml
+!include ../shared/sprites.puml
+
+' ── Layout engine (Smetana — no Graphviz required) ────────────
+' Remove this line if you have Graphviz installed and prefer it:
+!pragma layout smetana
+
+' ── Canvas ─────────────────────────────────────────────────────
+skinparam backgroundColor $DB_BG
+skinparam shadowing        false
+skinparam defaultFontName  "Helvetica Neue, Arial, sans-serif"
+skinparam defaultFontSize  13
+skinparam defaultFontColor $DB_TEXT
+skinparam roundCorner      8
+skinparam linetype         ortho
+skinparam nodesep          50
+skinparam ranksep          80
+
+' ── Hide UML artifacts not needed for ER style ─────────────────
+hide circle
+hide empty members
+
+' ── Entity / Class tables ──────────────────────────────────────
+skinparam class {
+  BackgroundColor        $DB_SURFACE
+  BorderColor            $DB_BORDER
+  FontColor              $DB_TEXT
+  FontSize               13
+
+  ' Table header (entity name row)
+  HeaderBackgroundColor  $DB_HEADER
+  HeaderFontColor        $DB_TEXT
+  HeaderFontSize         13
+  HeaderFontStyle        bold
+
+  ' Stereotype label (shown under entity name)
+  StereotypeFontColor    $DB_TEXT2
+  StereotypeFontSize     10
+
+  ' Column rows
+  AttributeFontColor     $DB_TEXT
+  AttributeFontSize      12
+
+  BorderThickness        1.5
+}
+
+' ── Relationship arrows ────────────────────────────────────────
+skinparam arrow {
+  Color     $DB_ARROW
+  FontColor $DB_TEXT2
+  FontSize  11
+  Thickness 1.5
+}

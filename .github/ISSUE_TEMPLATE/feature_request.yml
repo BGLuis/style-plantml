@@ -1,0 +1,29 @@
+name: 💡 Feature Request / Sugestão de Recurso
+description: Suggest a new theme, stereotype, or macro / Sugira um novo tema, estereótipo ou macro
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Suggest an improvement or new capability / Sugira uma melhoria ou nova funcionalidade.
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal / Proposta
+      description: Describe the new style, theme, or feature / Descreva o novo estilo, tema ou recurso
+      placeholder: Proposal details / Detalhes da proposta
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case / Caso de Uso
+      description: Why is this needed? / Por que isso é necessário?
+      placeholder: Describe the problem this solves / Descreva o problema que isso resolve
+    validations:
+      required: true
+  - type: textarea
+    id: visual-reference
+    attributes:
+      label: Visual Reference / Referência Visual (optional / opcional)
+      placeholder: Links to Figma, design kits, or diagrams / Links para Figma, kits de design ou diagramas

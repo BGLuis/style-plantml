@@ -1,0 +1,59 @@
+' ═══════════════════════════════════════════════════════════════
+' style-plantml — Light Sequence Theme
+' Inspired by modern clean design systems
+'
+' USAGE:
+'   !include <path>/themes/light/sequence.puml
+' ═══════════════════════════════════════════════════════════════
+
+!include ../shared/variables-light.puml
+
+skinparam backgroundColor            $L_BG
+skinparam shadowing                  false
+skinparam defaultFontName            "Helvetica Neue, Arial, sans-serif"
+skinparam defaultFontSize            13
+skinparam defaultFontColor           $L_TEXT
+skinparam roundCorner                8
+
+skinparam sequence {
+  ArrowThickness                     1.5
+  ArrowColor                         $L_COMPUTE_B
+  ArrowFontColor                     $L_TEXT2
+  ArrowFontSize                      11
+  LifeLineBorderColor                $L_BORDER
+  LifeLineBackgroundColor            $L_SURFACE
+  ParticipantBorderThickness         1.5
+  ParticipantBorderColor             $L_BORDER
+  ParticipantBackgroundColor         $L_SURFACE
+  ParticipantFontColor               $L_TEXT
+  ParticipantFontSize                13
+  ParticipantFontStyle               bold
+  ActorBorderColor                   $L_BORDER
+  ActorBackgroundColor               $L_SURFACE
+  ActorFontColor                     $L_TEXT
+  DividerBackgroundColor             $L_SURFACE2
+  DividerBorderColor                 $L_BORDER
+  DividerFontColor                   $L_TEXT2
+  GroupBackgroundColor               $L_COMPUTE_F
+  GroupBorderColor                   $L_COMPUTE_B
+  GroupFontColor                     $L_TEXT
+  GroupHeaderFontColor               $L_TEXT
+  ReferenceBackgroundColor           $L_SURFACE2
+  ReferenceBorderColor               $L_BORDER
+  BoxBackgroundColor                 $L_SURFACE2
+  BoxBorderColor                     $L_BORDER
+  MessageAlign                       center
+}
+
+skinparam note {
+  BackgroundColor                    #FFFBE6
+  BorderColor                        #F59E0B
+  FontColor                          $L_TEXT
+  FontSize                           12
+}
+
+skinparam database {
+  BackgroundColor                    $L_STORAGE_F
+  BorderColor                        $L_STORAGE_B
+  FontColor                          $L_TEXT
+}

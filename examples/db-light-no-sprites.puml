@@ -1,0 +1,83 @@
+@startuml db-light-no-sprites
+' ═══════════════════════════════════════════════════════════════
+' Example: Database / ER diagram — Light theme WITHOUT sprites
+'
+' Only change vs. db-light-with-sprites.puml:
+'   !define HIDE_SPRITES   ← this single line before !include
+' ═══════════════════════════════════════════════════════════════
+
+!define HIDE_SPRITES
+!include ../themes/light/database.puml
+
+title "E-Commerce Schema (No Icons)"
+
+' ── Tables ─────────────────────────────────────────────────────
+
+class "users" as User {
+  COL_PK(id, uuid)
+  --
+  COL(username, varchar(50))
+  COL(email, varchar(255))
+  COL(password_hash, text)
+  COL(created_at, timestamp)
+  COL(updated_at, timestamp)
+}
+
+class "organizations" as Org {
+  COL_PK(id, uuid)
+  --
+  COL(name, varchar(100))
+  COL(slug, varchar(100))
+  COL(plan, enum)
+  COL(created_at, timestamp)
+}
+
+class "orders" as Order {
+  COL_PK(id, uuid)
+  --
+  COL_FK(user_id, uuid)
+  COL_FK(org_id, uuid)
+  COL(total, decimal(10.2))
+  COL(currency, char(3))
+  COL(status, enum)
+  COL(created_at, timestamp)
+}
+
+class "order_items" as Item {
+  COL_PK(id, uuid)
+  --
+  COL_FK(order_id, uuid)
+  COL_FK(product_id, uuid)
+  COL(quantity, integer)
+  COL(unit_price, decimal(10.2))
+}
+
+class "products" as Product {
+  COL_PK(id, uuid)
+  --
+  COL_IDX(sku, varchar(100))
+  COL(name, varchar(255))
+  COL(description, text)
+  COL(price, decimal(10.2))
+  COL(stock, integer)
+  COL(created_at, timestamp)
+}
+
+class "categories" as Category {
+  COL_PK(id, uuid)
+  --
+  COL_FK(parent_id, uuid)
+  COL(name, varchar(100))
+  COL(slug, varchar(100))
+}
+
+' ── Relationships ──────────────────────────────────────────────
+Org     "1" ||--o{ User    : "has members"
+Org     "1" ||--o{ Order   : "owns"
+User    "1" ||--o{ Order   : "places"
+Order   "1" ||--|{ Item    : "contains"
+Product "1" ||--o{ Item    : "appears in"
+Category "1" ||--o{ Product : "groups"
+Category "1" ||--o{ Category : "parent of"
+
+@enduml

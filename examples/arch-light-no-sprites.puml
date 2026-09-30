@@ -1,0 +1,57 @@
+@startuml arch-light-no-sprites
+' ═══════════════════════════════════════════════════════════════
+' Example: Architecture diagram — Light theme WITHOUT sprites
+'
+' Only change vs. arch-light-with-sprites.puml:
+'   !define HIDE_SPRITES   ← this single line before !include
+' ═══════════════════════════════════════════════════════════════
+
+!define HIDE_SPRITES
+!include ../themes/light/architecture.puml
+
+title "E-Commerce Platform — Architecture (No Icons)"
+
+' ── Actors ─────────────────────────────────────────────────────
+SVC_ACTOR(webuser, "Web User")
+SVC_ACTOR(mobileuser, "Mobile User")
+
+' ── Edge Layer ─────────────────────────────────────────────────
+package "Edge" {
+  SVC_LOADBALANCER(lb, "Load Balancer")
+  SVC_AUTH(gateway, "API Gateway\n+ Auth")
+}
+
+' ── Application Services ───────────────────────────────────────
+package "Application Services" {
+  SVC_COMPUTE(auth,     "Auth Service")
+  SVC_COMPUTE(orders,   "Order Service")
+  SVC_COMPUTE(products, "Product Service")
+  SVC_COMPUTE(notify,   "Notification\nService")
+}
+
+' ── Data Layer ─────────────────────────────────────────────────
+package "Data Layer" {
+  SVC_STORAGE(pg,    "PostgreSQL")
+  SVC_CACHE(redis,   "Redis")
+  SVC_QUEUE(rabbit,  "RabbitMQ")
+}
+
+' ── External ───────────────────────────────────────────────────
+SVC_EXTERNAL(payment, "Stripe API")
+SVC_EXTERNAL(email,   "SendGrid")
+
+' ── Relationships ──────────────────────────────────────────────
+webuser    --> lb       : HTTPS
+mobileuser --> lb       : HTTPS
+lb         --> gateway
+gateway    --> auth
+gateway    --> orders
+gateway    --> products
+orders     --> pg       : write
+orders     --> rabbit   : publish
+products   --> redis    : read/write
+orders     --> payment  : charge
+notify     --> email    : send
+rabbit     --> notify   : consume
+
+@enduml

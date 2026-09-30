@@ -1,0 +1,88 @@
+' ═══════════════════════════════════════════════════════════════
+' style-plantml — Sprites (Font Awesome 5 via tupadr3 v2.4.0)
+'
+' Sprites are ENABLED by default.
+'
+' To DISABLE sprites (plain shapes, no icons), add this line
+' BEFORE your !include of any theme file:
+'
+'   !define HIDE_SPRITES
+'
+' Example:
+'   !define HIDE_SPRITES
+'   !include <path>/themes/light/architecture.puml
+'
+' The same diagram macros (SVC_COMPUTE, COL_PK, etc.) work
+' identically in both modes — no diagram changes needed.
+' ═══════════════════════════════════════════════════════════════
+
+!ifndef HIDE_SPRITES
+
+  ' ── Load tupadr3 Font Awesome 5 via URL (no local install needed) ──
+  !define ICONURL https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v2.4.0
+  !include ICONURL/common.puml
+
+  ' Architecture sprites
+  !include ICONURL/font-awesome-5/server.puml
+  !include ICONURL/font-awesome-5/database.puml
+  !include ICONURL/font-awesome-5/exchange_alt.puml
+  !include ICONURL/font-awesome-5/user.puml
+  !include ICONURL/font-awesome-5/plug.puml
+  !include ICONURL/font-awesome-5/memory.puml
+  !include ICONURL/font-awesome-5/network_wired.puml
+  !include ICONURL/font-awesome-5/cloud.puml
+  !include ICONURL/font-awesome-5/key.puml
+  !include ICONURL/font-awesome-5/link.puml
+  !include ICONURL/font-awesome-5/search.puml
+  !include ICONURL/font-awesome-5/shield_alt.puml
+  !include ICONURL/font-awesome-5/balance_scale.puml
+
+  ' ──────────────────────────────────────────────────────────────
+  ' Architecture macros — WITH icons
+  ' Usage: SVC_COMPUTE(alias, "Label")
+  ' ──────────────────────────────────────────────────────────────
+  !define SVC_COMPUTE(alias, label)       node "<$fa5_server>\n<b>label</b>" as alias <<compute>>
+  !define SVC_STORAGE(alias, label)       database "<$fa5_database>\n<b>label</b>" as alias <<storage>>
+  !define SVC_QUEUE(alias, label)         queue "<$fa5_exchange_alt>\n<b>label</b>" as alias <<queue>>
+  !define SVC_ACTOR(alias, label)         actor "<$fa5_user>\n<b>label</b>" as alias <<actor>>
+  !define SVC_EXTERNAL(alias, label)      node "<$fa5_plug>\n<b>label</b>" as alias <<external>>
+  !define SVC_CACHE(alias, label)         database "<$fa5_memory>\n<b>label</b>" as alias <<cache>>
+  !define SVC_LOADBALANCER(alias, label)  node "<$fa5_balance_scale>\n<b>label</b>" as alias <<loadbalancer>>
+  !define SVC_CLOUD(alias, label)         cloud "<$fa5_cloud>\n<b>label</b>" as alias <<cloud>>
+  !define SVC_AUTH(alias, label)          node "<$fa5_shield_alt>\n<b>label</b>" as alias <<auth>>
+  !define SVC_API(alias, label)           node "<$fa5_plug>\n<b>label</b>" as alias <<external>>
+
+  ' ──────────────────────────────────────────────────────────────
+  ' Database / ER macros — WITH icons
+  ' Usage: COL_PK(id, uuid)
+  ' ──────────────────────────────────────────────────────────────
+  !define COL_PK(name, type)   <color:#B45309><$fa5_key{scale=0.5}> <b>name</b></color> : <color:#6B7280>type</color>
+  !define COL_FK(name, type)   <color:#1D4ED8><$fa5_link{scale=0.5}> name</color> : <color:#6B7280>type</color>
+  !define COL_IDX(name, type)  <color:#047857><$fa5_search{scale=0.5}> name</color> : <color:#6B7280>type</color>
+  !define COL(name, type)      name : <color:#6B7280>type</color>
+
+!else
+
+  ' ──────────────────────────────────────────────────────────────
+  ' Architecture macros — WITHOUT icons (plain shapes)
+  ' ──────────────────────────────────────────────────────────────
+  !define SVC_COMPUTE(alias, label)       node "label" as alias <<compute>>
+  !define SVC_STORAGE(alias, label)       database "label" as alias <<storage>>
+  !define SVC_QUEUE(alias, label)         queue "label" as alias <<queue>>
+  !define SVC_ACTOR(alias, label)         actor "label" as alias <<actor>>
+  !define SVC_EXTERNAL(alias, label)      node "label" as alias <<external>>
+  !define SVC_CACHE(alias, label)         database "label" as alias <<cache>>
+  !define SVC_LOADBALANCER(alias, label)  node "label" as alias <<loadbalancer>>
+  !define SVC_CLOUD(alias, label)         cloud "label" as alias <<cloud>>
+  !define SVC_AUTH(alias, label)          node "label" as alias <<auth>>
+  !define SVC_API(alias, label)           node "label" as alias <<external>>
+
+  ' ──────────────────────────────────────────────────────────────
+  ' Database / ER macros — WITHOUT icons (text badges)
+  ' ──────────────────────────────────────────────────────────────
+  !define COL_PK(name, type)   <b><color:#B45309>[PK] name</color></b> : <color:#6B7280>type</color>
+  !define COL_FK(name, type)   <color:#1D4ED8>[FK] name</color> : <color:#6B7280>type</color>
+  !define COL_IDX(name, type)  <color:#047857>[IDX] name</color> : <color:#6B7280>type</color>
+  !define COL(name, type)      name : <color:#6B7280>type</color>
+
+!endif

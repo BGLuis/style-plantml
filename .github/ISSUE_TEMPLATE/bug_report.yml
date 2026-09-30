@@ -1,0 +1,34 @@
+name: 🐛 Bug Report / Relato de Bug
+description: Report rendering errors or styling issues / Relate erros de renderização ou problemas de estilo
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill out this form to help us resolve the issue / Preencha este formulário para nos ajudar a resolver o problema.
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description / Descrição do Bug
+      description: What went wrong? / O que aconteceu?
+      placeholder: Describe the problem / Descreva o problema
+    validations:
+      required: true
+  - type: textarea
+    id: puml-code
+    attributes:
+      label: Minimal PlantUML Code / Código Mínimo Reproduzível
+      description: Provide the smallest .puml code that reproduces the bug / Forneça o menor código que reproduz o problema
+      render: plantuml
+    validations:
+      required: true
+  - type: input
+    id: plantuml-version
+    attributes:
+      label: PlantUML Version / Versão do PlantUML
+      placeholder: e.g. 1.2024.8
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior / Comportamento Esperado
+      placeholder: What should have rendered? / O que deveria ter sido renderizado?

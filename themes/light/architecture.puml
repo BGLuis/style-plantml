@@ -1,0 +1,197 @@
+' ═══════════════════════════════════════════════════════════════
+' style-plantml — Light Architecture Theme
+' Inspired by: Figma Architecture Diagram Components (Community)
+'
+' USAGE:
+'   !include <path>/themes/light/architecture.puml
+'
+' DISABLE sprites (plain shapes only):
+'   !define HIDE_SPRITES
+'   !include <path>/themes/light/architecture.puml
+'
+' AVAILABLE MACROS:
+'   SVC_COMPUTE(alias, "Label")      — service / server
+'   SVC_STORAGE(alias, "Label")      — database / storage
+'   SVC_QUEUE(alias, "Label")        — message queue / broker
+'   SVC_ACTOR(alias, "Label")        — user / actor
+'   SVC_EXTERNAL(alias, "Label")     — external API / 3rd party
+'   SVC_CACHE(alias, "Label")        — cache (Redis, Memcached…)
+'   SVC_LOADBALANCER(alias, "Label") — load balancer / proxy
+'   SVC_CLOUD(alias, "Label")        — cloud service / region
+'   SVC_AUTH(alias, "Label")         — auth / security gateway
+'   SVC_API(alias, "Label")          — API endpoint / gateway
+'
+' AVAILABLE STEREOTYPES (for manual node declarations):
+'   <<compute>>  <<storage>>  <<queue>>  <<actor>>
+'   <<external>> <<cache>>    <<loadbalancer>>
+'   <<cloud>>    <<auth>>
+' ═══════════════════════════════════════════════════════════════
+
+!include ../shared/variables-light.puml
+!include ../shared/sprites.puml
+
+' ── Layout engine (Smetana — no Graphviz required) ────────────
+' Remove this line if you have Graphviz installed and prefer it:
+!pragma layout smetana
+
+' ── Global layout & canvas ─────────────────────────────────────
+skinparam backgroundColor $L_BG
+skinparam shadowing        false
+skinparam defaultFontName  "Helvetica Neue, Arial, sans-serif"
+skinparam defaultFontSize  13
+skinparam defaultFontColor $L_TEXT
+skinparam roundCorner      10
+skinparam linetype         ortho
+skinparam padding          14
+skinparam nodesep          60
+skinparam ranksep          80
+
+' ── Package / Group ────────────────────────────────────────────
+skinparam package {
+  BackgroundColor $L_SURFACE2
+  BorderColor     $L_BORDER
+  FontColor       $L_TEXT
+  FontSize        12
+  FontStyle       bold
+  BorderThickness 1
+}
+
+' ── Default Node (no stereotype) ───────────────────────────────
+skinparam node {
+  BackgroundColor $L_SURFACE
+  BorderColor     $L_BORDER
+  FontColor       $L_TEXT
+  BorderThickness 1.5
+}
+
+' ── Default Component ──────────────────────────────────────────
+skinparam component {
+  BackgroundColor $L_SURFACE
+  BorderColor     $L_BORDER
+  FontColor       $L_TEXT
+  BorderThickness 1.5
+}
+
+' ── Database shape ─────────────────────────────────────────────
+skinparam database {
+  BackgroundColor $L_SURFACE
+  BorderColor     $L_BORDER
+  FontColor       $L_TEXT
+  BorderThickness 1.5
+}
+
+' ── Queue shape ────────────────────────────────────────────────
+skinparam queue {
+  BackgroundColor $L_SURFACE
+  BorderColor     $L_BORDER
+  FontColor       $L_TEXT
+  BorderThickness 1.5
+}
+
+' ── Cloud shape ────────────────────────────────────────────────
+skinparam cloud {
+  BackgroundColor $L_CLOUD_F
+  BorderColor     $L_CLOUD_B
+  FontColor       $L_TEXT
+  BorderThickness 1.5
+}
+
+' ── Arrows ─────────────────────────────────────────────────────
+skinparam arrow {
+  Color           $L_COMPUTE_B
+  FontColor       $L_TEXT2
+  FontSize        11
+  Thickness       1.5
+}
+
+' ═══════════════════════════════════════════════════════════════
+' Stereotypes (category-based colors)
+' ═══════════════════════════════════════════════════════════════
+
+' ── <<compute>> — Services, Servers, APIs ──────────────────────
+skinparam node<<compute>> {
+  BackgroundColor $L_COMPUTE_F
+  BorderColor     $L_COMPUTE_B
+  FontColor       $L_TEXT
+}
+skinparam component<<compute>> {
+  BackgroundColor $L_COMPUTE_F
+  BorderColor     $L_COMPUTE_B
+  FontColor       $L_TEXT
+}
+
+' ── <<storage>> — Databases, Volumes ──────────────────────────
+skinparam database<<storage>> {
+  BackgroundColor $L_STORAGE_F
+  BorderColor     $L_STORAGE_B
+  FontColor       $L_TEXT
+}
+skinparam node<<storage>> {
+  BackgroundColor $L_STORAGE_F
+  BorderColor     $L_STORAGE_B
+  FontColor       $L_TEXT
+}
+
+' ── <<queue>> — Message Brokers, Event Buses ──────────────────
+skinparam queue<<queue>> {
+  BackgroundColor $L_NETWORK_F
+  BorderColor     $L_NETWORK_B
+  FontColor       $L_TEXT
+}
+skinparam node<<queue>> {
+  BackgroundColor $L_NETWORK_F
+  BorderColor     $L_NETWORK_B
+  FontColor       $L_TEXT
+}
+
+' ── <<external>> — 3rd-Party APIs, External Systems ───────────
+skinparam node<<external>> {
+  BackgroundColor $L_EXTERNAL_F
+  BorderColor     $L_EXTERNAL_B
+  FontColor       $L_TEXT
+}
+skinparam component<<external>> {
+  BackgroundColor $L_EXTERNAL_F
+  BorderColor     $L_EXTERNAL_B
+  FontColor       $L_TEXT
+}
+
+' ── <<cache>> — Redis, Memcached, In-Memory ───────────────────
+skinparam database<<cache>> {
+  BackgroundColor $L_CACHE_F
+  BorderColor     $L_CACHE_B
+  FontColor       $L_TEXT
+}
+skinparam node<<cache>> {
+  BackgroundColor $L_CACHE_F
+  BorderColor     $L_CACHE_B
+  FontColor       $L_TEXT
+}
+
+' ── <<auth>> — Auth Services, Security Gateways ───────────────
+skinparam node<<auth>> {
+  BackgroundColor $L_AUTH_F
+  BorderColor     $L_AUTH_B
+  FontColor       $L_TEXT
+}
+
+' ── <<loadbalancer>> — Load Balancers, Proxies ────────────────
+skinparam node<<loadbalancer>> {
+  BackgroundColor $L_LB_F
+  BorderColor     $L_LB_B
+  FontColor       $L_TEXT
+}
+
+' ── <<actor>> — Users, Clients ────────────────────────────────
+skinparam actor {
+  BackgroundColor $L_SURFACE
+  BorderColor     $L_BORDER
+  FontColor       $L_TEXT
+}
+
+' ── <<cloud>> — Cloud regions / services ──────────────────────
+skinparam cloud<<cloud>> {
+  BackgroundColor $L_CLOUD_F
+  BorderColor     $L_CLOUD_B
+  FontColor       $L_TEXT
+}

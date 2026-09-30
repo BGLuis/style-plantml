@@ -1,0 +1,46 @@
+@startuml database-unstyled
+title "Blog Schema (Default / Unstyled)"
+
+!pragma layout smetana
+
+class User {
+  +id : uuid
+  +username : string
+  +email : string
+  +created_at : datetime
+}
+
+class Post {
+  +id : uuid
+  +user_id : uuid
+  +title : string
+  +body : text
+  +published_at : datetime
+}
+
+class Comment {
+  +id : uuid
+  +post_id : uuid
+  +user_id : uuid
+  +body : text
+  +created_at : datetime
+}
+
+class Tag {
+  +id : uuid
+  +name : string
+  +slug : string
+}
+
+class PostTag {
+  +post_id : uuid
+  +tag_id : uuid
+}
+
+User     "1" --o{ Post     : writes
+Post     "1" --o{ Comment  : has
+User     "1" --o{ Comment  : writes
+Post     "1" --o{ PostTag  : tagged
+Tag      "1" --o{ PostTag  : used in
+
+@enduml

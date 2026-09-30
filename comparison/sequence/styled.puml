@@ -1,0 +1,22 @@
+@startuml sequence-styled
+title "User Login Flow (Styled / style-plantml)"
+
+!include ../../themes/light/sequence.puml
+
+actor "User" as User
+participant "Frontend" as FE
+participant "API Gateway" as GW
+participant "Auth Service" as Auth
+database "User DB" as DB
+
+User  -> FE    : enter credentials
+FE    -> GW    : POST /auth/login
+GW    -> Auth  : validateCredentials(email, password)
+Auth  -> DB    : SELECT user WHERE email=?
+DB    --> Auth : user record
+Auth  -> Auth  : verify password hash
+Auth  --> GW   : JWT token
+GW    --> FE   : 200 OK + token
+FE    --> User : redirect to dashboard
+
+@enduml

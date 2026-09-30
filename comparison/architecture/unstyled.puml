@@ -1,0 +1,25 @@
+@startuml architecture-unstyled
+title "Order Processing System (Default / Unstyled)"
+
+!pragma layout smetana
+
+node "Web Client" as WC
+node "API Server" as API
+node "Auth Service" as Auth
+node "Order Service" as Orders
+database "PostgreSQL" as DB
+database "Redis Cache" as Cache
+queue "RabbitMQ" as MQ
+node "Email Service" as Email
+node "Stripe API" as Stripe
+
+WC      --> API     : HTTPS
+API     --> Auth    : validate
+API     --> Orders  : create order
+Orders  --> DB      : persist
+Orders  --> Cache   : cache result
+Orders  --> MQ      : publish event
+Orders  --> Stripe  : charge
+MQ      --> Email   : send confirmation
+
+@enduml

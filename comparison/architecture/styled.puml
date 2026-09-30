@@ -1,0 +1,33 @@
+@startuml architecture-styled
+title "Order Processing System (Styled / style-plantml)"
+
+!define HIDE_SPRITES
+!include ../../themes/light/architecture.puml
+
+SVC_ACTOR(WC, "Web Client")
+
+package "Application" {
+  SVC_COMPUTE(API,    "API Server")
+  SVC_AUTH(Auth,      "Auth Service")
+  SVC_COMPUTE(Orders, "Order Service")
+}
+
+package "Data" {
+  SVC_STORAGE(DB,    "PostgreSQL")
+  SVC_CACHE(Cache,   "Redis Cache")
+  SVC_QUEUE(MQ,      "RabbitMQ")
+}
+
+SVC_EXTERNAL(Email,  "Email Service")
+SVC_EXTERNAL(Stripe, "Stripe API")
+
+WC      --> API     : HTTPS
+API     --> Auth    : validate
+API     --> Orders  : create order
+Orders  --> DB      : persist
+Orders  --> Cache   : cache result
+Orders  --> MQ      : publish event
+Orders  --> Stripe  : charge
+MQ      --> Email   : send confirmation
+
+@enduml

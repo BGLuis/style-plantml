@@ -1,0 +1,9 @@
+# PlantUML runtime jar
+plantuml.jar
+
+# OS / Editor files
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/

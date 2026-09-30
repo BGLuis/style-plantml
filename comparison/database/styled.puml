@@ -1,0 +1,51 @@
+@startuml database-styled
+title "Blog Schema (Styled / style-plantml)"
+
+!define HIDE_SPRITES
+!include ../../themes/light/database.puml
+
+class "users" as User {
+  COL_PK(id, uuid)
+  --
+  COL(username, varchar(50))
+  COL(email, varchar(255))
+  COL(created_at, timestamp)
+}
+
+class "posts" as Post {
+  COL_PK(id, uuid)
+  --
+  COL_FK(user_id, uuid)
+  COL(title, varchar(255))
+  COL(body, text)
+  COL(published_at, timestamp)
+}
+
+class "comments" as Comment {
+  COL_PK(id, uuid)
+  --
+  COL_FK(post_id, uuid)
+  COL_FK(user_id, uuid)
+  COL(body, text)
+  COL(created_at, timestamp)
+}
+
+class "tags" as Tag {
+  COL_PK(id, uuid)
+  --
+  COL_IDX(slug, varchar(100))
+  COL(name, varchar(50))
+}
+
+class "post_tags" as PostTag {
+  COL_FK(post_id, uuid)
+  COL_FK(tag_id, uuid)
+}
+
+User    "1" ||--o{ Post    : "writes"
+Post    "1" ||--o{ Comment : "has"
+User    "1" ||--o{ Comment : "writes"
+Post    "1" ||--|{ PostTag : "tagged via"
+Tag     "1" ||--|{ PostTag : "used in"
+
+@enduml
