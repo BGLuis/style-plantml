@@ -26,9 +26,6 @@
 # 📖 About
 **style-plantml** provides clean, modern, Figma-inspired themes for PlantUML diagrams. It brings contemporary visual design (subtle palettes, distinct category colors, rounded borders, clean table headers, and optional Font Awesome 5 icons) to Architecture, Entity-Relationship (Database), and Sequence diagrams.
 
-# 📋 Motivation
-Criar uma estilização para PlantUML inspirada nos kits de componentes de arquitetura e banco de dados relacional do Figma, substituindo o aspecto cru e datado padrão por um visual limpo e profissional, permitindo alternar estilos e ícones (sprites) de forma rápida e modular.
-
 # ⚡ Visual Comparison (Before vs After)
 
 ### Architecture Diagram

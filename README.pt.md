@@ -26,9 +26,6 @@
 # 📖 Sobre
 O **style-plantml** oferece temas visuais modernos para o PlantUML, inspirados em design kits do Figma. Aplica paletas suaves, cantos arredondados, distinção por categoria (compute, storage, queue, etc.), cabeçalhos estilizados em tabelas de banco de dados e ícones opcionais via Font Awesome 5.
 
-# 📋 Motivo
-Criar uma estilização para PlantUML inspirada nos kits de componentes de arquitetura e banco de dados relacional do Figma, substituindo o aspecto cru e datado padrão por um visual limpo e profissional, permitindo alternar estilos e ícones (sprites) de forma rápida e modular.
-
 # ⚡ Comparação Visual (Antes vs Depois)
 
 ### Diagrama de Arquitetura
