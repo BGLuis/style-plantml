@@ -184,7 +184,7 @@ de chave, no molde do *toggle* de `sprites.puml:19`:
 **Reprodução:** salvar `README.md:74-81` num diretório vazio e renderizar; sai a imagem de erro com
 `[From https://raw.githubusercontent.com/.../architecture.puml (line 30)]`.
 
-**Correção:** aplicar o bloco acima às quatro linhas de `!include ../shared/` dos três temas.
+**Correção:** aplicar o bloco acima às cinco linhas de `!include ../shared/` dos três temas.
 Validado: o tema alterado, num diretório sem `themes/shared/`, buscou as dependências pela URL e
 aplicou as cores (código 0).
 **Critério de aceite:** um teste de CI renderiza o bloco exato de `README.md:74-81`, apontando para o
