@@ -72,7 +72,7 @@ user --> api
 #### Opção B: URL Direta do GitHub
 ```plantuml
 @startuml
-!define STYLE_PLANTML https://raw.githubusercontent.com/bgluis/style-plantml/main
+!define STYLE_PLANTML https://raw.githubusercontent.com/bgluis/style-plantml/v1.0.0
 !include STYLE_PLANTML/themes/light/architecture.puml
 
 SVC_ACTOR(user, "User")

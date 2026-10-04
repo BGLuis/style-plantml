@@ -1,5 +1,8 @@
 # PlantUML runtime jar
-plantuml.jar
+plantuml*.jar
+
+# Generated SVGs from tests
+*.svg
 
 # OS / Editor files
 .DS_Store
