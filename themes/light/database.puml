@@ -30,8 +30,13 @@
 '   A }o--o{ B : "relates"             (many to many)
 ' ═══════════════════════════════════════════════════════════════
 
-!include ../shared/variables-light.puml
-!include ../shared/sprites.puml
+!if %variable_exists("STYLE_PLANTML")
+  !include STYLE_PLANTML/themes/shared/variables-light.puml
+  !include STYLE_PLANTML/themes/shared/sprites.puml
+!else
+  !include ../shared/variables-light.puml
+  !include ../shared/sprites.puml
+!endif
 
 ' ── Layout engine (Smetana — no Graphviz required) ────────────
 ' Remove this line if you have Graphviz installed and prefer it:

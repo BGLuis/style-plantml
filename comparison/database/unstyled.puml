@@ -3,44 +3,54 @@ title "Blog Schema (Default / Unstyled)"
 
 !pragma layout smetana
 
-class User {
-  +id : uuid
-  +username : string
-  +email : string
-  +created_at : datetime
+' Minimal macro stubs — same schema as the styled version, no theme applied
+!define COL_PK(name, type)   {field} [PK] name : type
+!define COL_FK(name, type)   {field} [FK] name : type
+!define COL_IDX(name, type)  {field} [IDX] name : type
+!define COL(name, type)      {field} name : type
+
+class "users" as User {
+  COL_PK(id, uuid)
+  --
+  COL(username, varchar(50))
+  COL(email, varchar(255))
+  COL(created_at, timestamp)
 }
 
-class Post {
-  +id : uuid
-  +user_id : uuid
-  +title : string
-  +body : text
-  +published_at : datetime
+class "posts" as Post {
+  COL_PK(id, uuid)
+  --
+  COL_FK(user_id, uuid)
+  COL(title, varchar(255))
+  COL(body, text)
+  COL(published_at, timestamp)
 }
 
-class Comment {
-  +id : uuid
-  +post_id : uuid
-  +user_id : uuid
-  +body : text
-  +created_at : datetime
+class "comments" as Comment {
+  COL_PK(id, uuid)
+  --
+  COL_FK(post_id, uuid)
+  COL_FK(user_id, uuid)
+  COL(body, text)
+  COL(created_at, timestamp)
 }
 
-class Tag {
-  +id : uuid
-  +name : string
-  +slug : string
+class "tags" as Tag {
+  COL_PK(id, uuid)
+  --
+  COL_IDX(slug, varchar(100))
+  COL(name, varchar(50))
 }
 
-class PostTag {
-  +post_id : uuid
-  +tag_id : uuid
+class "post_tags" as PostTag {
+  COL_FK(post_id, uuid)
+  COL_FK(tag_id, uuid)
 }
 
-User     "1" --o{ Post     : writes
-Post     "1" --o{ Comment  : has
-User     "1" --o{ Comment  : writes
-Post     "1" --o{ PostTag  : tagged
-Tag      "1" --o{ PostTag  : used in
+User    "1" --o{ Post    : "writes"
+Post    "1" --o{ Comment : "has"
+User    "1" --o{ Comment : "writes"
+Post    "1" --o{ PostTag : "tagged via"
+Tag     "1" --o{ PostTag : "used in"
 
 @enduml

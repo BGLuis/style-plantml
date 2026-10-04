@@ -19,19 +19,26 @@
 '   SVC_LOADBALANCER(alias, "Label") — load balancer / proxy
 '   SVC_CLOUD(alias, "Label")        — cloud service / region
 '   SVC_AUTH(alias, "Label")         — auth / security gateway
-'   SVC_API(alias, "Label")          — API endpoint / gateway
+'   SVC_API(alias, "Label")          — API endpoint / gateway (teal)
 '
 ' AVAILABLE STEREOTYPES (for manual node declarations):
 '   <<compute>>  <<storage>>  <<queue>>  <<actor>>
 '   <<external>> <<cache>>    <<loadbalancer>>
-'   <<cloud>>    <<auth>>
+'   <<cloud>>    <<auth>>     <<api>>
 ' ═══════════════════════════════════════════════════════════════
 
-!include ../shared/variables-light.puml
-!include ../shared/sprites.puml
+!if %variable_exists("STYLE_PLANTML")
+  !include STYLE_PLANTML/themes/shared/variables-light.puml
+  !include STYLE_PLANTML/themes/shared/sprites.puml
+!else
+  !include ../shared/variables-light.puml
+  !include ../shared/sprites.puml
+!endif
 
-' ── Layout engine (Smetana — no Graphviz required) ────────────
-' Remove this line if you have Graphviz installed and prefer it:
+' ── Layout engine ──────────────────────────────────────────────
+' Smetana (default): no Graphviz required.
+' NOTE: `skinparam linetype ortho` has no effect under Smetana;
+'       remove the pragma below if you have Graphviz installed.
 !pragma layout smetana
 
 ' ── Global layout & canvas ─────────────────────────────────────
@@ -42,7 +49,6 @@ skinparam defaultFontSize  13
 skinparam defaultFontColor $L_TEXT
 skinparam roundCorner      10
 skinparam linetype         ortho
-skinparam padding          14
 skinparam nodesep          60
 skinparam ranksep          80
 
@@ -185,7 +191,7 @@ skinparam node<<loadbalancer>> {
 ' ── <<actor>> — Users, Clients ────────────────────────────────
 skinparam actor {
   BackgroundColor $L_SURFACE
-  BorderColor     $L_BORDER
+  BorderColor     $L_TEXT2
   FontColor       $L_TEXT
 }
 
@@ -193,5 +199,12 @@ skinparam actor {
 skinparam cloud<<cloud>> {
   BackgroundColor $L_CLOUD_F
   BorderColor     $L_CLOUD_B
+  FontColor       $L_TEXT
+}
+
+' ── <<api>> — API Gateways, Endpoints ───────────────────────
+skinparam node<<api>> {
+  BackgroundColor $L_API_F
+  BorderColor     $L_API_B
   FontColor       $L_TEXT
 }

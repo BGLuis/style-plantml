@@ -6,7 +6,11 @@
 '   !include <path>/themes/light/sequence.puml
 ' ═══════════════════════════════════════════════════════════════
 
-!include ../shared/variables-light.puml
+!if %variable_exists("STYLE_PLANTML")
+  !include STYLE_PLANTML/themes/shared/variables-light.puml
+!else
+  !include ../shared/variables-light.puml
+!endif
 
 skinparam backgroundColor            $L_BG
 skinparam shadowing                  false

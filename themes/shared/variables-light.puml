@@ -6,6 +6,7 @@
 ' It is automatically included by:
 '   themes/light/architecture.puml
 '   themes/light/database.puml
+'   themes/light/sequence.puml
 ' ═══════════════════════════════════════════════════════════════
 
 ' ── Canvas & Surfaces ──────────────────────────────────────────
@@ -14,7 +15,7 @@
 !$L_SURFACE2   = "#EEF2F8"
 !$L_BORDER     = "#C8D0E0"
 !$L_TEXT       = "#1A2033"
-!$L_TEXT2      = "#6B7591"
+!$L_TEXT2      = "#5F6985"
 
 ' ── Category Colors: border / fill ────────────────────────────
 !$L_COMPUTE_B      = "#4B6FD4"
@@ -47,8 +48,12 @@
 !$DB_HEADER    = "#F1F3F9"
 !$DB_BORDER    = "#D1D5E4"
 !$DB_TEXT      = "#111827"
-!$DB_TEXT2     = "#6B7280"
+!$DB_TEXT2     = "#5C6375"
 !$DB_PK        = "#B45309"
 !$DB_FK        = "#1D4ED8"
 !$DB_IDX       = "#047857"
 !$DB_ARROW     = "#4B6FD4"
+
+' ── API Gateway ───────────────────────────────────────────────
+!$L_API_B      = "#0E7490"
+!$L_API_F      = "#E0F2FE"

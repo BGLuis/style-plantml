@@ -11,7 +11,7 @@
 
 <!-- Badges das Tecnologias Utilizadas -->
 ![PlantUML](https://www.shieldcn.dev/badge/PlantUML-Theme-3178C6.svg?variant=branded&size=sm)
-![Java](https://www.shieldcn.dev/badge/OpenJDK-17+-ED8B00.svg?variant=branded&size=sm)
+![Java](https://www.shieldcn.dev/badge/OpenJDK-11+-ED8B00.svg?variant=branded&size=sm)
 
   <h3>style-plantml</h3>
   Estilização moderna para PlantUML inspirada em design kits do Figma com suporte a sprites opcionais.
@@ -31,23 +31,23 @@ O **style-plantml** oferece temas visuais modernos para o PlantUML, inspirados e
 ### Diagrama de Arquitetura
 | Padrão PlantUML (Sem estilo) | style-plantml (Com estilo) |
 |:---:|:---:|
-| <img src="comparison/architecture/unstyled.png" width="380" alt="Arquitetura sem estilo"/> | <img src="comparison/architecture/styled.png" width="380" alt="Arquitetura estilizada"/> |
+| <img src="comparison/architecture/architecture-unstyled.png" width="380" alt="Arquitetura sem estilo"/> | <img src="comparison/architecture/architecture-styled.png" width="380" alt="Arquitetura estilizada"/> |
 
 ### Banco de Dados Relacional / ER
 | Padrão PlantUML (Sem estilo) | style-plantml (Com estilo) |
 |:---:|:---:|
-| <img src="comparison/database/unstyled.png" width="380" alt="Banco de dados sem estilo"/> | <img src="comparison/database/styled.png" width="380" alt="Banco de dados estilizado"/> |
+| <img src="comparison/database/database-unstyled.png" width="380" alt="Banco de dados sem estilo"/> | <img src="comparison/database/database-styled.png" width="380" alt="Banco de dados estilizado"/> |
 
 ### Diagrama de Sequência
 | Padrão PlantUML (Sem estilo) | style-plantml (Com estilo) |
 |:---:|:---:|
-| <img src="comparison/sequence/unstyled.png" width="440" alt="Sequência sem estilo"/> | <img src="comparison/sequence/styled.png" width="440" alt="Sequência estilizada"/> |
+| <img src="comparison/sequence/sequence-unstyled.png" width="440" alt="Sequência sem estilo"/> | <img src="comparison/sequence/sequence-styled.png" width="440" alt="Sequência estilizada"/> |
 
 # 💻 Como Iniciar
 
 ### Requisitos
 - [Java OpenJDK](https://openjdk.org/) (>= 11)
-- [PlantUML](https://plantuml.com/download) (>= 1.2024.x)
+- [PlantUML](https://plantuml.com/download) (>= 1.2024.8)
 - [Graphviz](https://graphviz.org/download/) *(Opcional — o motor interno Smetana já vem pré-configurado)*
 
 ### Instalação e Uso
@@ -85,12 +85,12 @@ user --> api
 Os ícones vêm habilitados por padrão. Para renderizar apenas as formas sem ícones, defina `!define HIDE_SPRITES` **antes** do `!include`:
 ```plantuml
 !define HIDE_SPRITES
-!include ../themes/light/architecture.puml
+!include path/to/style-plantml/themes/light/architecture.puml
 ```
 
 ---
 
 # 🤝 Contribuidores
 <a href="https://github.com/bgluis/style-plantml/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=bgluis/style-plantml"/>
+  <img src="https://contrib.rocks/image?repo=bgluis/style-plantml" alt="Contribuidores"/>
 </a>

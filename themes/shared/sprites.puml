@@ -1,5 +1,5 @@
 ' ═══════════════════════════════════════════════════════════════
-' style-plantml — Sprites (Font Awesome 5 via tupadr3 v2.4.0)
+' style-plantml — Sprites (Font Awesome 5 via PlantUML stdlib)
 '
 ' Sprites are ENABLED by default.
 '
@@ -18,48 +18,45 @@
 
 !ifndef HIDE_SPRITES
 
-  ' ── Load tupadr3 Font Awesome 5 via URL (no local install needed) ──
-  !define ICONURL https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v2.4.0
-  !include ICONURL/common.puml
-
-  ' Architecture sprites
-  !include ICONURL/font-awesome-5/server.puml
-  !include ICONURL/font-awesome-5/database.puml
-  !include ICONURL/font-awesome-5/exchange_alt.puml
-  !include ICONURL/font-awesome-5/user.puml
-  !include ICONURL/font-awesome-5/plug.puml
-  !include ICONURL/font-awesome-5/memory.puml
-  !include ICONURL/font-awesome-5/network_wired.puml
-  !include ICONURL/font-awesome-5/cloud.puml
-  !include ICONURL/font-awesome-5/key.puml
-  !include ICONURL/font-awesome-5/link.puml
-  !include ICONURL/font-awesome-5/search.puml
-  !include ICONURL/font-awesome-5/shield_alt.puml
-  !include ICONURL/font-awesome-5/balance_scale.puml
+  ' ── Load tupadr3 Font Awesome 5 via PlantUML stdlib (offline, fast) ──
+  !include <tupadr3/common>
+  !include <tupadr3/font-awesome-5/server>
+  !include <tupadr3/font-awesome-5/database>
+  !include <tupadr3/font-awesome-5/exchange_alt>
+  !include <tupadr3/font-awesome-5/user>
+  !include <tupadr3/font-awesome-5/plug>
+  !include <tupadr3/font-awesome-5/memory>
+  !include <tupadr3/font-awesome-5/network_wired>
+  !include <tupadr3/font-awesome-5/cloud>
+  !include <tupadr3/font-awesome-5/key>
+  !include <tupadr3/font-awesome-5/link>
+  !include <tupadr3/font-awesome-5/search>
+  !include <tupadr3/font-awesome-5/shield_alt>
+  !include <tupadr3/font-awesome-5/balance_scale>
 
   ' ──────────────────────────────────────────────────────────────
   ' Architecture macros — WITH icons
   ' Usage: SVC_COMPUTE(alias, "Label")
   ' ──────────────────────────────────────────────────────────────
-  !define SVC_COMPUTE(alias, label)       node "<$fa5_server>\n<b>label</b>" as alias <<compute>>
-  !define SVC_STORAGE(alias, label)       database "<$fa5_database>\n<b>label</b>" as alias <<storage>>
-  !define SVC_QUEUE(alias, label)         queue "<$fa5_exchange_alt>\n<b>label</b>" as alias <<queue>>
-  !define SVC_ACTOR(alias, label)         actor "<$fa5_user>\n<b>label</b>" as alias <<actor>>
-  !define SVC_EXTERNAL(alias, label)      node "<$fa5_plug>\n<b>label</b>" as alias <<external>>
-  !define SVC_CACHE(alias, label)         database "<$fa5_memory>\n<b>label</b>" as alias <<cache>>
-  !define SVC_LOADBALANCER(alias, label)  node "<$fa5_balance_scale>\n<b>label</b>" as alias <<loadbalancer>>
-  !define SVC_CLOUD(alias, label)         cloud "<$fa5_cloud>\n<b>label</b>" as alias <<cloud>>
-  !define SVC_AUTH(alias, label)          node "<$fa5_shield_alt>\n<b>label</b>" as alias <<auth>>
-  !define SVC_API(alias, label)           node "<$fa5_plug>\n<b>label</b>" as alias <<external>>
+  !define SVC_COMPUTE(alias, label)       node "<$server>\nlabel" as alias <<compute>>
+  !define SVC_STORAGE(alias, label)       database "<$database>\nlabel" as alias <<storage>>
+  !define SVC_QUEUE(alias, label)         queue "<$exchange_alt>\nlabel" as alias <<queue>>
+  !define SVC_ACTOR(alias, label)         actor "<$user>\nlabel" as alias <<actor>>
+  !define SVC_EXTERNAL(alias, label)      node "<$plug>\nlabel" as alias <<external>>
+  !define SVC_CACHE(alias, label)         database "<$memory>\nlabel" as alias <<cache>>
+  !define SVC_LOADBALANCER(alias, label)  node "<$balance_scale>\nlabel" as alias <<loadbalancer>>
+  !define SVC_CLOUD(alias, label)         cloud "<$cloud>\nlabel" as alias <<cloud>>
+  !define SVC_AUTH(alias, label)          node "<$shield_alt>\nlabel" as alias <<auth>>
+  !define SVC_API(alias, label)           node "<$network_wired>\nlabel" as alias <<api>>
 
   ' ──────────────────────────────────────────────────────────────
   ' Database / ER macros — WITH icons
   ' Usage: COL_PK(id, uuid)
   ' ──────────────────────────────────────────────────────────────
-  !define COL_PK(name, type)   <color:#B45309><$fa5_key{scale=0.5}> <b>name</b></color> : <color:#6B7280>type</color>
-  !define COL_FK(name, type)   <color:#1D4ED8><$fa5_link{scale=0.5}> name</color> : <color:#6B7280>type</color>
-  !define COL_IDX(name, type)  <color:#047857><$fa5_search{scale=0.5}> name</color> : <color:#6B7280>type</color>
-  !define COL(name, type)      name : <color:#6B7280>type</color>
+  !define COL_PK(name, type)   <color:$DB_PK><$key{scale=0.5}> <b>name</b></color> : <color:$DB_TEXT2>type</color>
+  !define COL_FK(name, type)   <color:$DB_FK><$link{scale=0.5}> name</color> : <color:$DB_TEXT2>type</color>
+  !define COL_IDX(name, type)  <color:$DB_IDX><$search{scale=0.5}> name</color> : <color:$DB_TEXT2>type</color>
+  !define COL(name, type)      name : <color:$DB_TEXT2>type</color>
 
 !else
 
@@ -75,14 +72,14 @@
   !define SVC_LOADBALANCER(alias, label)  node "label" as alias <<loadbalancer>>
   !define SVC_CLOUD(alias, label)         cloud "label" as alias <<cloud>>
   !define SVC_AUTH(alias, label)          node "label" as alias <<auth>>
-  !define SVC_API(alias, label)           node "label" as alias <<external>>
+  !define SVC_API(alias, label)           node "label" as alias <<api>>
 
   ' ──────────────────────────────────────────────────────────────
   ' Database / ER macros — WITHOUT icons (text badges)
   ' ──────────────────────────────────────────────────────────────
-  !define COL_PK(name, type)   <b><color:#B45309>[PK] name</color></b> : <color:#6B7280>type</color>
-  !define COL_FK(name, type)   <color:#1D4ED8>[FK] name</color> : <color:#6B7280>type</color>
-  !define COL_IDX(name, type)  <color:#047857>[IDX] name</color> : <color:#6B7280>type</color>
-  !define COL(name, type)      name : <color:#6B7280>type</color>
+  !define COL_PK(name, type)   <b><color:$DB_PK>[PK] name</color></b> : <color:$DB_TEXT2>type</color>
+  !define COL_FK(name, type)   <color:$DB_FK>[FK] name</color> : <color:$DB_TEXT2>type</color>
+  !define COL_IDX(name, type)  <color:$DB_IDX>[IDX] name</color> : <color:$DB_TEXT2>type</color>
+  !define COL(name, type)      name : <color:$DB_TEXT2>type</color>
 
 !endif

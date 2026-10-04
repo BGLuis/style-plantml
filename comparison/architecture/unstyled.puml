@@ -3,15 +3,31 @@ title "Order Processing System (Default / Unstyled)"
 
 !pragma layout smetana
 
-node "Web Client" as WC
-node "API Server" as API
-node "Auth Service" as Auth
-node "Order Service" as Orders
-database "PostgreSQL" as DB
-database "Redis Cache" as Cache
-queue "RabbitMQ" as MQ
-node "Email Service" as Email
-node "Stripe API" as Stripe
+' Minimal macro stubs — same shapes as the styled version, no theme applied
+!define SVC_ACTOR(alias, label)        actor "label" as alias
+!define SVC_COMPUTE(alias, label)      node "label" as alias
+!define SVC_AUTH(alias, label)         node "label" as alias
+!define SVC_STORAGE(alias, label)      database "label" as alias
+!define SVC_CACHE(alias, label)        database "label" as alias
+!define SVC_QUEUE(alias, label)        queue "label" as alias
+!define SVC_EXTERNAL(alias, label)     node "label" as alias
+
+SVC_ACTOR(WC, "Web Client")
+
+package "Application" {
+  SVC_COMPUTE(API,    "API Server")
+  SVC_AUTH(Auth,      "Auth Service")
+  SVC_COMPUTE(Orders, "Order Service")
+}
+
+package "Data" {
+  SVC_STORAGE(DB,    "PostgreSQL")
+  SVC_CACHE(Cache,   "Redis Cache")
+  SVC_QUEUE(MQ,      "RabbitMQ")
+}
+
+SVC_EXTERNAL(Email,  "Email Service")
+SVC_EXTERNAL(Stripe, "Stripe API")
 
 WC      --> API     : HTTPS
 API     --> Auth    : validate

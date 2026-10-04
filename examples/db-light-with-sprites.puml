@@ -33,7 +33,7 @@ class "orders" as Order {
   --
   COL_FK(user_id, uuid)
   COL_FK(org_id, uuid)
-  COL(total, decimal(10.2))
+  COL(total, decimal(10,2))
   COL(currency, char(3))
   COL(status, enum)
   COL(created_at, timestamp)
@@ -45,7 +45,7 @@ class "order_items" as Item {
   COL_FK(order_id, uuid)
   COL_FK(product_id, uuid)
   COL(quantity, integer)
-  COL(unit_price, decimal(10.2))
+  COL(unit_price, decimal(10,2))
 }
 
 class "products" as Product {
@@ -54,7 +54,7 @@ class "products" as Product {
   COL_IDX(sku, varchar(100))
   COL(name, varchar(255))
   COL(description, text)
-  COL(price, decimal(10.2))
+  COL(price, decimal(10,2))
   COL(stock, integer)
   COL(created_at, timestamp)
 }
