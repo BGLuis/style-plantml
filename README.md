@@ -31,17 +31,17 @@
 ### Architecture Diagram
 | Default PlantUML (Unstyled) | style-plantml (Styled) |
 |:---:|:---:|
-| <img src="comparison/architecture/architecture-unstyled.png" width="380" alt="Architecture Unstyled"/> | <img src="comparison/architecture/architecture-styled.png" width="380" alt="Architecture Styled"/> |
+| <img src="comparison/architecture/architecture-unstyled.png?v=1.0.0" width="380" alt="Architecture Unstyled"/> | <img src="comparison/architecture/architecture-styled.png?v=1.0.0" width="380" alt="Architecture Styled"/> |
 
 ### Relational Database / ER Diagram
 | Default PlantUML (Unstyled) | style-plantml (Styled) |
 |:---:|:---:|
-| <img src="comparison/database/database-unstyled.png" width="380" alt="Database Unstyled"/> | <img src="comparison/database/database-styled.png" width="380" alt="Database Styled"/> |
+| <img src="comparison/database/database-unstyled.png?v=1.0.0" width="380" alt="Database Unstyled"/> | <img src="comparison/database/database-styled.png?v=1.0.0" width="380" alt="Database Styled"/> |
 
 ### Sequence Diagram
 | Default PlantUML (Unstyled) | style-plantml (Styled) |
 |:---:|:---:|
-| <img src="comparison/sequence/sequence-unstyled.png" width="440" alt="Sequence Unstyled"/> | <img src="comparison/sequence/sequence-styled.png" width="440" alt="Sequence Styled"/> |
+| <img src="comparison/sequence/sequence-unstyled.png?v=1.0.0" width="440" alt="Sequence Unstyled"/> | <img src="comparison/sequence/sequence-styled.png?v=1.0.0" width="440" alt="Sequence Styled"/> |
 
 # 💻 Getting Started
 

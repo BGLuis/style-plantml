@@ -31,17 +31,17 @@ O **style-plantml** oferece temas visuais modernos para o PlantUML, inspirados e
 ### Diagrama de Arquitetura
 | Padrão PlantUML (Sem estilo) | style-plantml (Com estilo) |
 |:---:|:---:|
-| <img src="comparison/architecture/architecture-unstyled.png" width="380" alt="Arquitetura sem estilo"/> | <img src="comparison/architecture/architecture-styled.png" width="380" alt="Arquitetura estilizada"/> |
+| <img src="comparison/architecture/architecture-unstyled.png?v=1.0.0" width="380" alt="Arquitetura sem estilo"/> | <img src="comparison/architecture/architecture-styled.png?v=1.0.0" width="380" alt="Arquitetura estilizada"/> |
 
 ### Banco de Dados Relacional / ER
 | Padrão PlantUML (Sem estilo) | style-plantml (Com estilo) |
 |:---:|:---:|
-| <img src="comparison/database/database-unstyled.png" width="380" alt="Banco de dados sem estilo"/> | <img src="comparison/database/database-styled.png" width="380" alt="Banco de dados estilizado"/> |
+| <img src="comparison/database/database-unstyled.png?v=1.0.0" width="380" alt="Banco de dados sem estilo"/> | <img src="comparison/database/database-styled.png?v=1.0.0" width="380" alt="Banco de dados estilizado"/> |
 
 ### Diagrama de Sequência
 | Padrão PlantUML (Sem estilo) | style-plantml (Com estilo) |
 |:---:|:---:|
-| <img src="comparison/sequence/sequence-unstyled.png" width="440" alt="Sequência sem estilo"/> | <img src="comparison/sequence/sequence-styled.png" width="440" alt="Sequência estilizada"/> |
+| <img src="comparison/sequence/sequence-unstyled.png?v=1.0.0" width="440" alt="Sequência sem estilo"/> | <img src="comparison/sequence/sequence-styled.png?v=1.0.0" width="440" alt="Sequência estilizada"/> |
 
 # 💻 Como Iniciar
 
