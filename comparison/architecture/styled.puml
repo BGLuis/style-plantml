@@ -1,7 +1,6 @@
 @startuml architecture-styled
 title "Order Processing System (Styled / style-plantml)"
 
-!define HIDE_SPRITES
 !include ../../themes/light/architecture.puml
 
 SVC_ACTOR(WC, "Web Client")

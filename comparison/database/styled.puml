@@ -1,7 +1,6 @@
 @startuml database-styled
 title "Blog Schema (Styled / style-plantml)"
 
-!define HIDE_SPRITES
 !include ../../themes/light/database.puml
 
 class "users" as User {
