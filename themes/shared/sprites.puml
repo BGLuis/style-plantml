@@ -18,6 +18,17 @@
 
 !ifndef HIDE_SPRITES
 
+  ' ── Icon sizes (override by defining the variable BEFORE the !include) ──
+  !if %not(%variable_exists("$ICON_SCALE_COL"))
+    !$ICON_SCALE_COL = 0.25
+  !endif
+  !if %not(%variable_exists("$ICON_SCALE_NODE"))
+    !$ICON_SCALE_NODE = 0.5
+  !endif
+  !if %not(%variable_exists("$ICON_SCALE_LOGO"))
+    !$ICON_SCALE_LOGO = 0.5
+  !endif
+
   ' ── Load tupadr3 Font Awesome 5 via PlantUML stdlib (offline, fast) ──
   !include <tupadr3/common>
   !include <tupadr3/font-awesome-5/server>
@@ -38,24 +49,24 @@
   ' Architecture macros — WITH icons
   ' Usage: SVC_COMPUTE(alias, "Label")
   ' ──────────────────────────────────────────────────────────────
-  !define SVC_COMPUTE(alias, label)       node "<$server>\nlabel" as alias <<compute>>
-  !define SVC_STORAGE(alias, label)       database "<$database>\nlabel" as alias <<storage>>
-  !define SVC_QUEUE(alias, label)         queue "<$exchange_alt>\nlabel" as alias <<queue>>
-  !define SVC_ACTOR(alias, label)         actor "<$user>\nlabel" as alias <<actor>>
-  !define SVC_EXTERNAL(alias, label)      node "<$plug>\nlabel" as alias <<external>>
-  !define SVC_CACHE(alias, label)         database "<$memory>\nlabel" as alias <<cache>>
-  !define SVC_LOADBALANCER(alias, label)  node "<$balance_scale>\nlabel" as alias <<loadbalancer>>
-  !define SVC_CLOUD(alias, label)         cloud "<$cloud>\nlabel" as alias <<cloud>>
-  !define SVC_AUTH(alias, label)          node "<$shield_alt>\nlabel" as alias <<auth>>
-  !define SVC_API(alias, label)           node "<$network_wired>\nlabel" as alias <<api>>
+  !define SVC_COMPUTE(alias, label)       node "<$server{scale=$ICON_SCALE_NODE}>\nlabel" as alias <<compute>>
+  !define SVC_STORAGE(alias, label)       database "<$database{scale=$ICON_SCALE_NODE}>\nlabel" as alias <<storage>>
+  !define SVC_QUEUE(alias, label)         queue "<$exchange_alt{scale=$ICON_SCALE_NODE}>\nlabel" as alias <<queue>>
+  !define SVC_ACTOR(alias, label)         actor "<$user{scale=$ICON_SCALE_NODE}>\nlabel" as alias <<actor>>
+  !define SVC_EXTERNAL(alias, label)      node "<$plug{scale=$ICON_SCALE_NODE}>\nlabel" as alias <<external>>
+  !define SVC_CACHE(alias, label)         database "<$memory{scale=$ICON_SCALE_NODE}>\nlabel" as alias <<cache>>
+  !define SVC_LOADBALANCER(alias, label)  node "<$balance_scale{scale=$ICON_SCALE_NODE}>\nlabel" as alias <<loadbalancer>>
+  !define SVC_CLOUD(alias, label)         cloud "<$cloud{scale=$ICON_SCALE_NODE}>\nlabel" as alias <<cloud>>
+  !define SVC_AUTH(alias, label)          node "<$shield_alt{scale=$ICON_SCALE_NODE}>\nlabel" as alias <<auth>>
+  !define SVC_API(alias, label)           node "<$network_wired{scale=$ICON_SCALE_NODE}>\nlabel" as alias <<api>>
 
   ' ──────────────────────────────────────────────────────────────
   ' Database / ER macros — WITH icons
   ' Usage: COL_PK(id, uuid)
   ' ──────────────────────────────────────────────────────────────
-  !define COL_PK(name, type)   <color:$DB_PK><$key{scale=0.5}> <b>name</b></color> : <color:$DB_TEXT2>type</color>
-  !define COL_FK(name, type)   <color:$DB_FK><$link{scale=0.5}> name</color> : <color:$DB_TEXT2>type</color>
-  !define COL_IDX(name, type)  <color:$DB_IDX><$search{scale=0.5}> name</color> : <color:$DB_TEXT2>type</color>
+  !define COL_PK(name, type)   <color:$DB_PK><$key{scale=$ICON_SCALE_COL}> <b>name</b></color> : <color:$DB_TEXT2>type</color>
+  !define COL_FK(name, type)   <color:$DB_FK><$link{scale=$ICON_SCALE_COL}> name</color> : <color:$DB_TEXT2>type</color>
+  !define COL_IDX(name, type)  <color:$DB_IDX><$search{scale=$ICON_SCALE_COL}> name</color> : <color:$DB_TEXT2>type</color>
   !define COL(name, type)      name : <color:$DB_TEXT2>type</color>
 
 !else
@@ -83,3 +94,116 @@
   !define COL(name, type)      name : <color:$DB_TEXT2>type</color>
 
 !endif
+
+' ═══════════════════════════════════════════════════════════════
+' Service logo variants — SVC_<CATEGORY>_ICON(alias, "Label", sprite [, scale])
+'
+' `sprite` is any sprite already included by the user, e.g.
+'   !include <logos/postgresql>
+'   SVC_STORAGE_ICON(pg, "PostgreSQL", postgresql)
+' The optional 4th argument overrides $ICON_SCALE_LOGO for one service.
+' With HIDE_SPRITES the sprite and scale arguments are ignored.
+'
+' Defined once, outside the HIDE_SPRITES branches: PlantUML registers
+' procedures even inside an inactive conditional, so same-named
+' procedures in both branches would shadow each other.
+' ═══════════════════════════════════════════════════════════════
+!procedure SVC_COMPUTE_ICON($alias, $label, $sprite, $scale = 0)
+  !ifdef HIDE_SPRITES
+    node "$label" as $alias <<compute>>
+  !else
+    !if ($scale == 0)
+      !$scale = $ICON_SCALE_LOGO
+    !endif
+    !$spriteRef = "<$" + $sprite + "{scale=" + $scale + "}>"
+    node "$spriteRef\n$label" as $alias <<compute>>
+  !endif
+!endprocedure
+!procedure SVC_STORAGE_ICON($alias, $label, $sprite, $scale = 0)
+  !ifdef HIDE_SPRITES
+    database "$label" as $alias <<storage>>
+  !else
+    !if ($scale == 0)
+      !$scale = $ICON_SCALE_LOGO
+    !endif
+    !$spriteRef = "<$" + $sprite + "{scale=" + $scale + "}>"
+    database "$spriteRef\n$label" as $alias <<storage>>
+  !endif
+!endprocedure
+!procedure SVC_QUEUE_ICON($alias, $label, $sprite, $scale = 0)
+  !ifdef HIDE_SPRITES
+    queue "$label" as $alias <<queue>>
+  !else
+    !if ($scale == 0)
+      !$scale = $ICON_SCALE_LOGO
+    !endif
+    !$spriteRef = "<$" + $sprite + "{scale=" + $scale + "}>"
+    queue "$spriteRef\n$label" as $alias <<queue>>
+  !endif
+!endprocedure
+!procedure SVC_EXTERNAL_ICON($alias, $label, $sprite, $scale = 0)
+  !ifdef HIDE_SPRITES
+    node "$label" as $alias <<external>>
+  !else
+    !if ($scale == 0)
+      !$scale = $ICON_SCALE_LOGO
+    !endif
+    !$spriteRef = "<$" + $sprite + "{scale=" + $scale + "}>"
+    node "$spriteRef\n$label" as $alias <<external>>
+  !endif
+!endprocedure
+!procedure SVC_CACHE_ICON($alias, $label, $sprite, $scale = 0)
+  !ifdef HIDE_SPRITES
+    database "$label" as $alias <<cache>>
+  !else
+    !if ($scale == 0)
+      !$scale = $ICON_SCALE_LOGO
+    !endif
+    !$spriteRef = "<$" + $sprite + "{scale=" + $scale + "}>"
+    database "$spriteRef\n$label" as $alias <<cache>>
+  !endif
+!endprocedure
+!procedure SVC_LOADBALANCER_ICON($alias, $label, $sprite, $scale = 0)
+  !ifdef HIDE_SPRITES
+    node "$label" as $alias <<loadbalancer>>
+  !else
+    !if ($scale == 0)
+      !$scale = $ICON_SCALE_LOGO
+    !endif
+    !$spriteRef = "<$" + $sprite + "{scale=" + $scale + "}>"
+    node "$spriteRef\n$label" as $alias <<loadbalancer>>
+  !endif
+!endprocedure
+!procedure SVC_CLOUD_ICON($alias, $label, $sprite, $scale = 0)
+  !ifdef HIDE_SPRITES
+    cloud "$label" as $alias <<cloud>>
+  !else
+    !if ($scale == 0)
+      !$scale = $ICON_SCALE_LOGO
+    !endif
+    !$spriteRef = "<$" + $sprite + "{scale=" + $scale + "}>"
+    cloud "$spriteRef\n$label" as $alias <<cloud>>
+  !endif
+!endprocedure
+!procedure SVC_AUTH_ICON($alias, $label, $sprite, $scale = 0)
+  !ifdef HIDE_SPRITES
+    node "$label" as $alias <<auth>>
+  !else
+    !if ($scale == 0)
+      !$scale = $ICON_SCALE_LOGO
+    !endif
+    !$spriteRef = "<$" + $sprite + "{scale=" + $scale + "}>"
+    node "$spriteRef\n$label" as $alias <<auth>>
+  !endif
+!endprocedure
+!procedure SVC_API_ICON($alias, $label, $sprite, $scale = 0)
+  !ifdef HIDE_SPRITES
+    node "$label" as $alias <<api>>
+  !else
+    !if ($scale == 0)
+      !$scale = $ICON_SCALE_LOGO
+    !endif
+    !$spriteRef = "<$" + $sprite + "{scale=" + $scale + "}>"
+    node "$spriteRef\n$label" as $alias <<api>>
+  !endif
+!endprocedure

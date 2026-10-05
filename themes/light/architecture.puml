@@ -21,6 +21,12 @@
 '   SVC_AUTH(alias, "Label")         — auth / security gateway
 '   SVC_API(alias, "Label")          — API endpoint / gateway (teal)
 '
+' ORIGINAL SERVICE LOGOS (include the logo from the PlantUML stdlib first):
+'   !include <logos/postgresql>
+'   SVC_<CATEGORY>_ICON(alias, "Label", sprite [, scale])
+'   e.g. SVC_STORAGE_ICON(pg, "PostgreSQL", postgresql)
+'   Categories: COMPUTE STORAGE QUEUE EXTERNAL CACHE LOADBALANCER CLOUD AUTH API
+'
 ' AVAILABLE STEREOTYPES (for manual node declarations):
 '   <<compute>>  <<storage>>  <<queue>>  <<actor>>
 '   <<external>> <<cache>>    <<loadbalancer>>

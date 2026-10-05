@@ -29,6 +29,7 @@ examples: $(PLANTUML_JAR)
 	$(PLANTUML) $(FLAGS) examples/db-light-no-sprites.puml
 	$(PLANTUML) $(FLAGS) examples/arch-light-with-sprites.puml
 	$(PLANTUML) $(FLAGS) examples/db-light-with-sprites.puml
+	$(PLANTUML) $(FLAGS) examples/arch-light-service-icons.puml
 
 clean:
 	rm -f comparison/*/*.png examples/*.png examples/*.svg
@@ -51,6 +52,11 @@ test: $(PLANTUML_JAR) test-option-b
 	  if [ "$$IMAGES_DB" -lt 12 ]; then echo "FAIL: expected at least 12 <image tags, got $$IMAGES_DB"; exit 1; fi
 	@! grep -qE "Please|cannot include|Error line" examples/db-light-with-sprites.svg || (echo "FAIL: error banner found in db-light-with-sprites.svg"; exit 1)
 	@! grep -q "</b>" examples/db-light-with-sprites.svg || (echo "FAIL: unescaped </b> found in db-light-with-sprites.svg"; exit 1)
+	@echo "=== Testing arch-light-service-icons ==="
+	@$(PLANTUML) $(FLAGS) -tsvg examples/arch-light-service-icons.puml
+	@IMAGES_ICONS=$$(grep -o '<image' examples/arch-light-service-icons.svg | wc -l); \
+	  if [ "$$IMAGES_ICONS" -lt 13 ]; then echo "FAIL: expected at least 13 <image tags, got $$IMAGES_ICONS"; exit 1; fi
+	@! grep -qE "Please|cannot include|Error line" examples/arch-light-service-icons.svg || (echo "FAIL: error banner found in arch-light-service-icons.svg"; exit 1)
 	@echo "=== Testing regression checks (fa5_ and skinparam padding) ==="
 	@! grep -rn "fa5_" themes/ || (echo "FAIL: deprecated fa5_ prefix found in themes"; exit 1)
 	@! grep -rn "skinparam padding" themes/ || (echo "FAIL: deprecated skinparam padding found in themes"; exit 1)

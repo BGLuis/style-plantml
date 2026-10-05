@@ -1,0 +1,59 @@
+@startuml arch-light-service-icons
+' ═══════════════════════════════════════════════════════════════
+' Example: Architecture diagram — Light theme WITH original service logos
+' ═══════════════════════════════════════════════════════════════
+
+!include ../themes/light/architecture.puml
+!include <logos/postgresql>
+!include <logos/redis>
+!include <logos/rabbitmq>
+!include <logos/nginx>
+!include <logos/stripe>
+!include <logos/sendgrid>
+
+title "E-Commerce Platform — Architecture"
+
+' ── Actors ─────────────────────────────────────────────────────
+SVC_ACTOR(webuser, "Web User")
+SVC_ACTOR(mobileuser, "Mobile User")
+
+' ── Edge Layer ─────────────────────────────────────────────────
+package "Edge" {
+  SVC_LOADBALANCER_ICON(lb, "Nginx", nginx)
+  SVC_AUTH(gateway, "API Gateway\n+ Auth")
+}
+
+' ── Application Services ───────────────────────────────────────
+package "Application Services" {
+  SVC_COMPUTE(auth,     "Auth Service")
+  SVC_COMPUTE(orders,   "Order Service")
+  SVC_COMPUTE(products, "Product Service")
+  SVC_COMPUTE(notify,   "Notification\nService")
+}
+
+' ── Data Layer ─────────────────────────────────────────────────
+package "Data Layer" {
+  SVC_STORAGE_ICON(pg,    "PostgreSQL", postgresql)
+  SVC_CACHE_ICON(redis,   "Redis", redis)
+  SVC_QUEUE_ICON(rabbit,  "RabbitMQ", rabbitmq, 0.9)
+}
+
+' ── External ───────────────────────────────────────────────────
+SVC_EXTERNAL_ICON(payment, "Stripe API", stripe, 0.7)
+SVC_EXTERNAL_ICON(email,   "SendGrid", sendgrid, 0.8)
+
+' ── Relationships ──────────────────────────────────────────────
+webuser    --> lb       : HTTPS
+mobileuser --> lb       : HTTPS
+lb         --> gateway
+gateway    --> auth
+gateway    --> orders
+gateway    --> products
+orders     --> pg       : write
+orders     --> rabbit   : publish
+products   --> redis    : read/write
+orders     --> payment  : charge
+notify     --> email    : send
+rabbit     --> notify   : consume
+
+@enduml
