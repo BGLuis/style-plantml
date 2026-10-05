@@ -31,17 +31,17 @@
 ### Architecture Diagram
 | Default PlantUML (Unstyled) | style-plantml (Styled) |
 |:---:|:---:|
-| <img src="comparison/architecture/architecture-unstyled.png?v=1.0.0" width="380" alt="Architecture Unstyled"/> | <img src="comparison/architecture/architecture-styled.png?v=1.0.0" width="380" alt="Architecture Styled"/> |
+| <img src="comparison/architecture/architecture-unstyled.png?v=1.1.0" width="380" alt="Architecture Unstyled"/> | <img src="comparison/architecture/architecture-styled.png?v=1.1.0" width="380" alt="Architecture Styled"/> |
 
 ### Relational Database / ER Diagram
 | Default PlantUML (Unstyled) | style-plantml (Styled) |
 |:---:|:---:|
-| <img src="comparison/database/database-unstyled.png?v=1.0.0" width="380" alt="Database Unstyled"/> | <img src="comparison/database/database-styled.png?v=1.0.0" width="380" alt="Database Styled"/> |
+| <img src="comparison/database/database-unstyled.png?v=1.1.0" width="380" alt="Database Unstyled"/> | <img src="comparison/database/database-styled.png?v=1.1.0" width="380" alt="Database Styled"/> |
 
 ### Sequence Diagram
 | Default PlantUML (Unstyled) | style-plantml (Styled) |
 |:---:|:---:|
-| <img src="comparison/sequence/sequence-unstyled.png?v=1.0.0" width="440" alt="Sequence Unstyled"/> | <img src="comparison/sequence/sequence-styled.png?v=1.0.0" width="440" alt="Sequence Styled"/> |
+| <img src="comparison/sequence/sequence-unstyled.png?v=1.1.0" width="440" alt="Sequence Unstyled"/> | <img src="comparison/sequence/sequence-styled.png?v=1.1.0" width="440" alt="Sequence Styled"/> |
 
 # 💻 Getting Started
 
@@ -87,6 +87,34 @@ Sprites are enabled by default. To remove icons, add `!define HIDE_SPRITES` **be
 !define HIDE_SPRITES
 !include path/to/style-plantml/themes/light/architecture.puml
 ```
+
+### Original Service Logos
+Include any logo from the PlantUML stdlib (`logos`, `awslib`, `azure`, `gcp`, `k8s`) and pass its sprite name to the `SVC_<CATEGORY>_ICON` macros. The category color is kept; with `HIDE_SPRITES` the logo is dropped.
+```plantuml
+!include path/to/style-plantml/themes/light/architecture.puml
+!include <logos/postgresql>
+
+SVC_STORAGE_ICON(pg, "PostgreSQL", postgresql)
+```
+
+Logos have different proportions, so `SVC_<CATEGORY>_ICON` accepts an optional 4th argument with the scale for that logo (default `0.5`). Avoid exactly `1.0`: PlantUML 1.2026.8 crashes on some logos at that value.
+```plantuml
+SVC_EXTERNAL_ICON(payment, "Stripe API", stripe, 0.7)
+```
+
+### Icon Sizes
+Define these **before** the `!include` to change the defaults:
+
+| Variable | Default | Affects |
+|---|---|---|
+| `$ICON_SCALE_COL` | `0.25` | PK / FK / IDX icons in tables |
+| `$ICON_SCALE_NODE` | `0.5` | Font Awesome icons in `SVC_*` nodes |
+| `$ICON_SCALE_LOGO` | `0.5` | Logos in `SVC_*_ICON` nodes |
+```plantuml
+!$ICON_SCALE_COL = 0.2
+!include path/to/style-plantml/themes/light/database.puml
+```
+See [`examples/arch-light-service-icons.puml`](examples/arch-light-service-icons.puml).
 
 ---
 
